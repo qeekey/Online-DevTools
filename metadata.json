@@ -1,0 +1,6 @@
+{
+  "name": "在线开发者工具箱",
+  "description": "免费在线开发者工具箱，提供JSON格式化与压缩（含树视图）、JWT解密加密与验签、MD5哈希加密、URL编码解码、Base64编码解码、Unix时间戳与日期互转等实用工具。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>在线开发者工具箱 - JSON格式化、JWT解密加密、MD5加密、URL编码解码、Base64、时间戳转换</title>
+    <meta name="description" content="免费在线开发者工具箱，提供JSON格式化与压缩（含树视图）、JWT解密加密与验签、MD5哈希加密、URL编码解码、Base64编码解码、Unix时间戳与日期互转等实用工具。" />
+    <meta name="keywords" content="在线工具箱,开发者工具,JSON格式化,JSON压缩,JSON校验,JSON树形图,JWT解密,JWT加密,JWT签名验签,Token解析,MD5加密,32位MD5,16位MD5,URL编码,URL解码,Base64编码,Base64解码,时间戳转换,Unix时间戳,北京时间互转,前端工具箱,程序员在线工具,dev tools" />
+    <meta name="author" content="在线开发者工具箱" />
+    <meta name="theme-color" content="#0284c7" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="baiduspider" content="index, follow" />
+
+    <!-- OpenGraph Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content="在线开发者工具箱" />
+    <meta property="og:title" content="在线开发者工具箱 - JSON格式化、JWT解密加密、MD5加密、URL编码解码、Base64、时间戳转换" />
+    <meta property="og:description" content="免费在线开发者工具箱，提供JSON格式化与压缩（含树视图）、JWT解密加密与验签、MD5哈希加密、URL编码解码、Base64编码解码、Unix时间戳与日期互转等实用工具。" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="在线开发者工具箱 - 程序员实用开发工具" />
+    <meta name="twitter:description" content="免费在线开发者工具箱，提供JSON格式化与压缩（含树视图）、JWT解密加密与验签、MD5哈希加密、URL编码解码、Base64编码解码、Unix时间戳与日期互转等实用工具。" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Schema.org Structured Data (JSON-LD) for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://devtool.internal/#webapp",
+          "name": "在线开发者工具箱",
+          "alternateName": ["DevTools Hub", "在线程序员开发工具箱", "JSON JWT 时间戳工具箱"],
+          "description": "免费在线开发者工具箱，提供JSON格式化与压缩（含树视图）、JWT解密加密与验签、MD5哈希加密、URL编码解码、Base64编码解码、Unix时间戳与日期互转等实用工具。",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript. Requires HTML5.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CNY"
+          },
+          "featureList": [
+            "JSON 格式化、压缩、严格语法校验与层级折叠树形视图",
+            "JWT Token 解码、三段色彩结构分析、Claims声明解析、HS256/HS384/HS512 验签与生成",
+            "MD5 字符串哈希密文计算，支持 32 位与 16 位大小写即时切换",
+            "URL 统一资源定位符安全编码与解码（encodeURIComponent / decodeURIComponent）",
+            "Base64 文本双向安全编解码，支持 UTF-8 多字节字符",
+            "Unix 时间戳（秒/毫秒）与格式化本地时间/UTC时间精准双向转换，支持实时北京时间同步"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://devtool.internal/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "在线开发者工具箱支持哪些常用的开发辅助功能？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "本工具箱集成了 6 大核心常用工具：JSON格式化与树形视图展示、JWT解密加密与签名验签、MD5哈希密文生成（16/32位大小写）、URL参数安全编解码、Base64文本编解码、以及Unix时间戳与本地/UTC日期的双向实时转换。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "在此工具箱中处理敏感数据（如 JWT 密钥、密码字符串）是否安全？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "非常安全。所有数据计算、格式化、MD5哈希和JWT加解密验签均采用纯浏览器前端离线技术（HTML5 及原生 Web Crypto API）计算，不会向任何服务器上传您的任何文本或密钥数据。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "JWT 签名校验和生成支持哪些加密算法？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "支持基于 HMAC 的 HS256 (SHA-256)、HS384 (SHA-384)、HS512 (SHA-512) 以及 none 算法，支持常规明文密钥及 Base64 编码密钥，并具备一键时间戳增减（+1小时、+24小时、+7天）与高熵随机秘钥生成能力。"
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased transition-colors duration-200">
+    <div id="root"></div>
+
+    <!-- Noscript Crawler Fallback: Allows search engine spiders without JavaScript execution to index all tools and keywords -->
+    <noscript>
+      <div style="padding: 24px; max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.6;">
+        <h1>在线开发者工具箱 - 程序员实用开发工具大全</h1>
+        <p>免费、高效、安全的在线开发者工具箱。所有数据计算均在本地浏览器完成，绝不上传服务器，保护您的代码与数据隐私。</p>
+        
+        <h2>核心功能一览：</h2>
+        <ul>
+          <li><strong>JSON 格式化与校验：</strong>支持 JSON 快速美化排版、去空格压缩、严格语法错误高亮提示以及可折叠的层级树形视图。</li>
+          <li><strong>JWT 解密与加密：</strong>支持 JWT Token 三段结构解析、标准声明（iat, exp, sub, iss）解读、HS256/HS384/HS512 签名验签与自定义签名生成。</li>
+          <li><strong>MD5 加密：</strong>一键生成字符串的 32 位和 16 位 MD5 哈希散列值，支持大写与小写快速切换。</li>
+          <li><strong>URL 编解码：</strong>支持对包含中文字符和特殊符号的网页 URL 路径及 Query 参数进行标准 URL 编码与解码。</li>
+          <li><strong>Base64 编解码：</strong>纯客户端将普通文本或 Base64 密文进行互转，完整兼容 UTF-8 中文字符编码。</li>
+          <li><strong>Unix 时间戳转换：</strong>提供秒级与毫秒级时间戳与本地北京时间、标准 UTC 时间的双向互转，支持实时时间时钟同步。</li>
+        </ul>
+      </div>
+    </noscript>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
