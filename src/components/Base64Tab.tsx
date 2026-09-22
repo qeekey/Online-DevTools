@@ -95,14 +95,14 @@ export function Base64Tab() {
               id="b64-encode-btn"
               className="px-3.5 py-1.5 bg-sky-600 hover:bg-sky-700 dark:bg-sky-600 dark:hover:bg-sky-500 text-white font-semibold text-xs sm:text-sm rounded-lg transition-all active:scale-98 cursor-pointer"
             >
-              {t('encode')}
+              {t('base64_encode_btn')}
             </button>
             <button
               onClick={handleDecode}
               id="b64-decode-btn"
               className="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 dark:bg-amber-600 dark:hover:bg-amber-500 text-white font-semibold text-xs sm:text-sm rounded-lg transition-all active:scale-98 cursor-pointer"
             >
-              {t('decode')}
+              {t('base64_decode_btn')}
             </button>
           </div>
           <button

@@ -180,29 +180,38 @@ export function TimestampTab() {
             </button>
           </div>
 
-          <div className="flex items-center gap-4 select-none">
-            <label className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 cursor-pointer">
-              <input
-                type="radio"
-                name="tsUnit"
-                value="s"
-                checked={tsUnit === 's'}
-                onChange={() => setTsUnit('s')}
-                className="w-4 h-4 text-sky-600 border-slate-300 dark:border-slate-600 focus:ring-sky-500 cursor-pointer"
-              />
-              {t('ts_unit_sec')}
-            </label>
-            <label className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 cursor-pointer">
-              <input
-                type="radio"
-                name="tsUnit"
-                value="ms"
-                checked={tsUnit === 'ms'}
-                onChange={() => setTsUnit('ms')}
-                className="w-4 h-4 text-sky-600 border-slate-300 dark:border-slate-600 focus:ring-sky-500 cursor-pointer"
-              />
-              {t('ts_unit_ms')}
-            </label>
+          <div className="flex items-center justify-between gap-2 select-none">
+            <div className="flex items-center gap-4">
+              <label className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 cursor-pointer">
+                <input
+                  type="radio"
+                  name="tsUnit"
+                  value="s"
+                  checked={tsUnit === 's'}
+                  onChange={() => setTsUnit('s')}
+                  className="w-4 h-4 text-sky-600 border-slate-300 dark:border-slate-600 focus:ring-sky-500 cursor-pointer"
+                />
+                {t('ts_unit_sec')}
+              </label>
+              <label className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 cursor-pointer">
+                <input
+                  type="radio"
+                  name="tsUnit"
+                  value="ms"
+                  checked={tsUnit === 'ms'}
+                  onChange={() => setTsUnit('ms')}
+                  className="w-4 h-4 text-sky-600 border-slate-300 dark:border-slate-600 focus:ring-sky-500 cursor-pointer"
+                />
+                {t('ts_unit_ms')}
+              </label>
+            </div>
+            <button
+              type="button"
+              onClick={setInputToCurrent}
+              className="text-xs text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-semibold cursor-pointer"
+            >
+              {lang === 'zh' ? '填入当前时间戳' : 'Use Current Timestamp'}
+            </button>
           </div>
         </div>
 
@@ -219,7 +228,7 @@ export function TimestampTab() {
               id="date-input-field"
               value={dateInput}
               onChange={(e) => setDateInput(e.target.value)}
-              placeholder="2026-07-18 12:00:00"
+              placeholder={lang === 'zh' ? '例如: 2026-07-18 12:00:00' : 'e.g. 2026-07-18 12:00:00'}
               className="flex-1 border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 focus:border-amber-500 dark:focus:border-amber-400 bg-slate-50 dark:bg-slate-800/80 px-3 py-2 font-mono text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-lg outline-none transition-colors"
             />
             <button
@@ -252,7 +261,7 @@ export function TimestampTab() {
       {/* Right side: Centralized display panel */}
       <div className="flex flex-col border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 shadow-md overflow-hidden">
         <div className="flex items-center justify-between gap-3 p-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/90 select-none">
-          <h3 className="font-bold text-slate-800 dark:text-slate-100 text-sm">{lang === 'zh' ? '转换时间结果' : 'Conversion Results'}</h3>
+          <h3 className="font-bold text-slate-800 dark:text-slate-100 text-sm">{t('ts_results_title')}</h3>
           <button
             onClick={handleClearAll}
             id="ts-clear-all-btn"
@@ -265,16 +274,18 @@ export function TimestampTab() {
 
         <div className="flex-grow flex flex-col justify-center divide-y divide-slate-100 dark:divide-slate-800 p-5">
           {/* Result 1: Local Time */}
-          <div className="py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <span className="text-xs sm:text-sm font-bold text-slate-400 dark:text-slate-500 w-28">{t('local_time')}</span>
-            <div className="flex-grow flex items-center gap-2 min-w-0">
+          <div className="py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
+            <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap shrink-0 sm:w-36">
+              {t('local_time')}
+            </span>
+            <div className="flex-1 flex items-center gap-2 min-w-0">
               <input
                 type="text"
                 readOnly
                 placeholder="—"
                 value={results.local}
                 id="result-local-input"
-                className="w-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 px-3 py-2 font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-200 rounded-lg outline-none"
+                className="flex-1 min-w-0 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 px-3 py-2 font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-200 rounded-lg outline-none"
               />
               <button
                 onClick={() => handleCopy(results.local)}
@@ -288,16 +299,18 @@ export function TimestampTab() {
           </div>
 
           {/* Result 2: UTC Time */}
-          <div className="py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <span className="text-xs sm:text-sm font-bold text-slate-400 dark:text-slate-500 w-28">{t('utc_time')}</span>
-            <div className="flex-grow flex items-center gap-2 min-w-0">
+          <div className="py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
+            <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap shrink-0 sm:w-36">
+              {t('utc_time')}
+            </span>
+            <div className="flex-1 flex items-center gap-2 min-w-0">
               <input
                 type="text"
                 readOnly
                 placeholder="—"
                 value={results.utc}
                 id="result-utc-input"
-                className="w-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 px-3 py-2 font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-200 rounded-lg outline-none"
+                className="flex-1 min-w-0 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 px-3 py-2 font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-200 rounded-lg outline-none"
               />
               <button
                 onClick={() => handleCopy(results.utc)}
@@ -311,16 +324,18 @@ export function TimestampTab() {
           </div>
 
           {/* Result 3: Timestamp (s) */}
-          <div className="py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <span className="text-xs sm:text-sm font-bold text-slate-400 dark:text-slate-500 w-28">{t('timestamp_sec')}</span>
-            <div className="flex-grow flex items-center gap-2 min-w-0">
+          <div className="py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
+            <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap shrink-0 sm:w-36">
+              {t('timestamp_sec')}
+            </span>
+            <div className="flex-1 flex items-center gap-2 min-w-0">
               <input
                 type="text"
                 readOnly
                 placeholder="—"
                 value={results.sec}
                 id="result-sec-input"
-                className="w-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 px-3 py-2 font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-200 rounded-lg outline-none"
+                className="flex-1 min-w-0 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 px-3 py-2 font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-200 rounded-lg outline-none"
               />
               <button
                 onClick={() => handleCopy(results.sec)}
@@ -334,16 +349,18 @@ export function TimestampTab() {
           </div>
 
           {/* Result 4: Timestamp (ms) */}
-          <div className="py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <span className="text-xs sm:text-sm font-bold text-slate-400 dark:text-slate-500 w-28">{t('timestamp_ms')}</span>
-            <div className="flex-grow flex items-center gap-2 min-w-0">
+          <div className="py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
+            <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap shrink-0 sm:w-36">
+              {t('timestamp_ms')}
+            </span>
+            <div className="flex-1 flex items-center gap-2 min-w-0">
               <input
                 type="text"
                 readOnly
                 placeholder="—"
                 value={results.ms}
                 id="result-ms-input"
-                className="w-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 px-3 py-2 font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-200 rounded-lg outline-none"
+                className="flex-1 min-w-0 border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 px-3 py-2 font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-200 rounded-lg outline-none"
               />
               <button
                 onClick={() => handleCopy(results.ms)}
